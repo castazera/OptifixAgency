@@ -1,0 +1,93 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Noticia;
+use Illuminate\Http\Request;
+
+class NoticiaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $allNoticias = Noticia::all();
+        // dd($allNoticias);
+        return view('noticias.index', ['noticias' => $allNoticias]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('noticias.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        $request->validate([
+            'titulo' => 'required|string|min:3|max:255',
+            'resumen' => 'required|string',
+            'contenido' => 'required|string',
+            'autor' => 'required|string|max:100',
+            'categoria' => 'nullable|string|max:100',
+            'estado' => 'in:publicada,borrador',
+        ],[
+            'titulo.required' => 'El titulo es requerido',
+            'titulo.string' => 'El titulo debe ser un texto',
+            'titulo.min' => 'El titulo debe tener al menos 3 caracteres',
+            'titulo.max' => 'El titulo debe tener como maximo 255 caracteres',
+            'resumen.required' => 'El resumen es requerido',
+            'resumen.string' => 'El resumen debe ser un texto',
+            'contenido.required' => 'El contenido es requerido',
+            'contenido.string' => 'El contenido debe ser un texto',
+            'autor.required' => 'El autor es requerido',
+            'autor.string' => 'El autor debe ser un texto',
+            'autor.max' => 'El autor debe tener como maximo 100 caracteres',
+            'categoria.string' => 'La categoria debe ser un texto',
+            'categoria.max' => 'La categoria debe tener como maximo 100 caracteres',
+            'estado.in' => 'El estado debe ser publicado o borrador',
+        ]);
+        Noticia::create($input);
+
+        return redirect()->route('noticias.index')->with('feedback.message', "La noticia <b>" .e( $input["titulo"] )."</b> fue creada correctamente");
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        return view('noticias.show', ['noticia' => Noticia::findOrFail($id)]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Noticia $noticia)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Noticia $noticia)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Noticia $noticia)
+    {
+        //
+    }
+}
