@@ -26,7 +26,7 @@
         <li class="nav-item">
             <x-nav-link route="about" href="{{ route('about') }}">Sobre nosotros</x-nav-link>
         </li>
-        {{-- @if(Auth::check())
+        @if(Auth::check())
         <li class="nav-item">
             <form action="{{ url('/cerrar-sesion') }}" method="post">
                 @csrf
@@ -37,20 +37,16 @@
         <li class="nav-item">
             <x-nav-link route="auth.login" href="{{ route('auth.login') }}">Iniciar sesión</x-nav-link>
         </li>
-        @endif --}}
-      {{-- <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> --}}
+        @endif
     </div>
   </div>
- </nav>
+</nav>
    <div class="container-fluid">
-    {{-- @if(session()->has('feedback.message'))
+    @if(session()->has('feedback.message'))
         <div class="alert alert-{{ session()->get('feedback.type') ?? 'success' }}">
             {!! session('feedback.message') !!}
         </div>
-    @endif --}}
+    @endif
     {{ $slot }}
    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous"></script>

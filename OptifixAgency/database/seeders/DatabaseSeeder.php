@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             NoticiasSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

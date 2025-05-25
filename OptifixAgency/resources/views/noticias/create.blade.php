@@ -2,7 +2,7 @@
     <x-slot:title>Agregar noticia</x-slot:title>
     <h1>Agregar noticia</h1>
 
-<form action="{{ route('noticias.store') }}" method="POST">
+    <form action="{{ route('noticias.store') }}" method="POST" enctype="multipart/form-data">
         @csrf {{--Token de seguridad--}}
         <div class="mb-3">
             <label for="titulo" class="form-label">Titulo</label>
@@ -19,16 +19,23 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="fecha" class="form-label">Fecha de lanzamiento</label>
-            <input type="date" class="form-control @error('fecha') is-invalid @enderror" id="fecha" name="fecha" value="{{ old('fecha') }}" >
-            @error('fecha')
+            <label for="contenido" class="form-label">Contenido</label>
+            <textarea class="form-control @error('contenido') is-invalid @enderror" id="contenido" name="contenido" rows="3" >{{ old('contenido') }}</textarea>
+            @error('contenido')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
-            <label for="contenido" class="form-label">Contenido</label>
-            <textarea class="form-control @error('contenido') is-invalid @enderror" id="contenido" name="contenido" rows="3" >{{ old('contenido') }}</textarea>
-            @error('contenido')
+            <label for="autor" class="form-label">Autor</label>
+            <input type="text" class="form-control @error('autor') is-invalid @enderror" id="autor" name="autor" value="{{ old('autor') }}" >
+            @error('autor')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen</label>
+            <input type="file" class="form-control @error('imagen') is-invalid @enderror" id="imagen" name="imagen" value="{{ old('imagen') }}" >
+            @error('imagen')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>

@@ -12,7 +12,7 @@ class Noticia extends Model
     protected $table = 'noticias';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['titulo', 'resumen', 'fecha', 'contenido', 'categoria', 'estado']; //permite que se pueda crear un nuevo registro
+    protected $fillable = ['titulo', 'resumen','contenido', 'autor','imagen', 'categoria', 'estado', 'fecha']; //permite que se pueda crear un nuevo registro
 
 }
 
